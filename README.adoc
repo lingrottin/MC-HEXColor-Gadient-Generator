@@ -2,7 +2,7 @@
 
 link:/README_zh.adoc[简体中文] +
 Generate texts with gadients and other styles to use in Minecraft. +
-Is a improved version of https://github.com/ltfjx/MC-HEXColor-Gadient-Generator[ltfjx's] and received the support of him.
+Is an improved version of https://github.com/ltfjx/MC-HEXColor-Gadient-Generator[ltfjx's] and received the support of him.
 
 == How to use it? ==
 Open the software, and you'll know everything.
