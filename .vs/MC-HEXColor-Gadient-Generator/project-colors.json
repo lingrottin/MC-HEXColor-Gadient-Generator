@@ -1,0 +1,16 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "edf4eb10-acd5-40a4-b1d9-8d48291e190d": {
+      "ProjectGuid": "edf4eb10-acd5-40a4-b1d9-8d48291e190d",
+      "DisplayName": "MC-HEXColor-Gadient-Generator",
+      "ColorIndex": 0
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "杂项文件",
+      "ColorIndex": -1
+    }
+  },
+  "NextColorIndex": 1
+}
