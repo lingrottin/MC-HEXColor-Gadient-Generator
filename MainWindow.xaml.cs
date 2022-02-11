@@ -26,12 +26,18 @@ namespace MC_HEXColor_Gadient_Generator
         }
         int Check()
         {
+            int returnint = 0;
             if( !(StartColorInput.Text.ToCharArray().Length == 7 && StartColorInput.Text.ToCharArray()[0] == '#'))
             {
-                MessageBox.Show(Languages.Get("ColorDisplayError", languagee), "Error");
-                return 1;
+                MessageBox.Show(Languages.Get("ColorDisplayError", languagee) + " in StartColor", "Error");
+                returnint= 1;
             }
-            return 0;
+            if (!(EndColorInput.Text.ToCharArray().Length == 7 && EndColorInput.Text.ToCharArray()[0] == '#'))
+            {
+                MessageBox.Show(Languages.Get("ColorDisplayError", languagee) + " in EndColor", "Error");
+                returnint= 1;
+            }
+            return returnint;
         }
         public void Button_OnClick(object sender, RoutedEventArgs e)
         {
