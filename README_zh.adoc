@@ -8,12 +8,15 @@
 
 == 屏幕截图 ==
 软件页面： +
+
 image::/images/zh.png[]
 
 游戏内示例： +
-image::/images/eng_example.png[]
+
+image::/images/zh_example.png[]
 
 菜单内示例： +
+
 image::/images/srv_example.png[]
 
 == FAQ ==
