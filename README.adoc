@@ -9,12 +9,15 @@ Open the software, and you'll know everything.
 
 === Screenshot ===
 In the software: +
+
 image::/images/eng.png[]
 
 In the game: +
+
 image::/images/eng_example.png[]
 
 In the menu: +
+
 image::/images/srv_example.png[]
 
 == FAQ ==
