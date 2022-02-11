@@ -54,7 +54,7 @@ namespace MC_HEXColor_Gadient_Generator
             return;
             
         }
-        int[] ParseColor(string color)
+        static int[] ParseColor(string color)
         {
             /*string RR = color.Substring(1, 2);
             string GG = color.Substring(3, 2);
@@ -96,6 +96,12 @@ namespace MC_HEXColor_Gadient_Generator
             InputLabel.Content = Languages.Get("InputLabel", lang);
             OutputLabel.Content = Languages.Get("OutputLabel", lang);
             Generate.Content = Languages.Get("Start", lang);
+            Bold.Content = Languages.Get("Bold", lang);
+            Underline.Content = Languages.Get("Underline", lang);
+            Italic.Content = Languages.Get("Italic", lang);
+            Strikethrough.Content = Languages.Get("Strikethrough", lang);
+            Obfuscated.Content = Languages.Get("Obfuscated", lang);
+            ReplaceLabel.Content = Languages.Get("Replace", lang);
             return;
         }
 
@@ -109,9 +115,22 @@ namespace MC_HEXColor_Gadient_Generator
             }
 
             //计算
-            decimal ColorPlR = (decimal)Math.Abs((StartColor[0] - EndColor[0]) / (Input.Length - 1) + (decimal)0.500000000);
-            decimal ColorPlG = (decimal)Math.Abs((StartColor[1] - EndColor[1]) / (Input.Length - 1) + (decimal)0.500000000);
-            decimal ColorPlB = (decimal)Math.Abs((StartColor[2] - EndColor[2]) / (Input.Length - 1) + (decimal)0.500000000);
+            decimal ColorPlR,ColorPlG,ColorPlB;
+            if (StartColor[0] == EndColor[0]) { ColorPlR = 0; }
+            else
+            {
+                ColorPlR = (decimal)Math.Abs((StartColor[0] - EndColor[0]) / (Input.Length - 1) + (decimal)0.500000000);
+            }
+            if (StartColor[1] == EndColor[1]) { ColorPlG = 0; }
+            else
+            {
+                ColorPlG = (decimal)Math.Abs((StartColor[1] - EndColor[1]) / (Input.Length - 1) + (decimal)0.500000000);
+            }
+            if (StartColor[2] == EndColor[2]) { ColorPlB = 0; }
+            else
+            {
+                ColorPlB = (decimal)Math.Abs((StartColor[2] - EndColor[2]) / (Input.Length - 1) + (decimal)0.500000000);
+            }
             int[] ColorsR = new int[Input.Length];
             int[] ColorsG = new int[Input.Length];
             int[] ColorsB = new int[Input.Length];
@@ -192,17 +211,21 @@ namespace MC_HEXColor_Gadient_Generator
             }
             else
             {
+                string replstring = "§";
+                if(ReplaceBox.Text != null) { replstring = ReplaceBox.Text; }
+                for(int i=0; i<Input.Length; i++)
+                {
+
+                    @return.ReturnString += $"{replstring}{colors_string[i]}";
                     for(int ii=0; ii<5; ii++)
                     {
                         if (Template[ii])
                         {
-                            @return.ReturnString += $"§{storeString[1, ii]}";
+                            @return.ReturnString += $"{replstring}{storeString[1, ii]}";
                         }
-                    }               
-                for(int i=0; i<Input.Length; i++)
-                {
+                    }
+                    @return.ReturnString += Input.ToCharArray()[i].ToString();
 
-                    @return.ReturnString += $"§{colors_string[i]}{Input.ToCharArray()[i]}";
                 }
             }
             
@@ -262,6 +285,13 @@ namespace MC_HEXColor_Gadient_Generator
             lang[0].Add("OutputLabel", "Output");
             lang[0].Add("LengthNotEnough", "Inputted string's length must be bigger than 1");
             lang[0].Add("Start", "Generate");
+            lang[0].Add("Bold", "Bold");
+            lang[0].Add("Italic", "Italic");
+            lang[0].Add("Strikethrough", "Strikethrough");
+            lang[0].Add("Underline", "Underlined");
+            lang[0].Add("Obfuscated", "Obfuscated");
+            lang[0].Add("Replace","String used to replace §:");
+
 
 
             lang[1].Add("TypeLabel", "输出类型");
@@ -272,6 +302,13 @@ namespace MC_HEXColor_Gadient_Generator
             lang[1].Add("OutputLabel", "输出");
             lang[1].Add("LengthNotEnough", "输入的字符串长度应大于1");
             lang[1].Add("Start", "生成");
+            lang[1].Add("Bold", "粗体");
+            lang[1].Add("Italic", "斜体");
+            lang[1].Add("Strikethrough", "删除线");
+            lang[1].Add("Underline", "下划线");
+            lang[1].Add("Obfuscated", "随机字符效果");
+            lang[1].Add("Replace", "用于替换§的字符串:");
+
         }
 #pragma warning disable 8602
 #pragma warning disable 8603

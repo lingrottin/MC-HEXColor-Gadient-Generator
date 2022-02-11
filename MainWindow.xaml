@@ -51,5 +51,7 @@
         <CheckBox x:Name="Strikethrough" Content="Strikethrough" HorizontalAlignment="Left" Height="16" Margin="10,441,0,0" VerticalAlignment="Top" Width="100"/>
         <CheckBox x:Name="Underline" Content="Underline" HorizontalAlignment="Left" Height="16" Margin="10,462,0,0" VerticalAlignment="Top" Width="100"/>
         <CheckBox x:Name="Obfuscated" Content="Obfuscated" HorizontalAlignment="Left" Height="16" Margin="10,483,0,0" VerticalAlignment="Top" Width="100"/>
+        <TextBox x:Name="ReplaceBox" Grid.Column="1" HorizontalAlignment="Left" Height="21" Margin="471,436,0,0" TextWrapping="Wrap" Text="§" VerticalAlignment="Top" Width="111" FontSize="13"/>
+        <Label x:Name="ReplaceLabel" Grid.Column="1" Content="Label" HorizontalAlignment="Left" Height="34" Margin="283,436,0,0" VerticalAlignment="Top" Width="183" FontFamily="Microsoft YaHei UI" FontStyle="Normal" HorizontalContentAlignment="Right"/>
     </Grid>
 </Window>

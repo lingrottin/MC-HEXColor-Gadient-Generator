@@ -8,4 +8,21 @@ Is an improved version of https://github.com/ltfjx/MC-HEXColor-Gadient-Generator
 Open the software, and you'll know everything.
 
 === Screenshot ===
+In the software: +
 image::/images/eng.png[]
+
+In the game: +
+image::/images/eng_example.png[]
+
+In the menu: +
+image::/images/srv_example.png[]
+
+== FAQ ==
+- How to choose between `Legacy` and `JSON`? +
+If you're on MCJE 1.13 or older version, use Legacy. Else, JSON and command block are your best friends; If you're on MCBE, choose whichever you want.
+- It shows .NET 6.0 Runtime required or I can't open it! What can I do? +
+Download .NET 6.0 Runtime on https://dotnet.microsoft.com/en-us/download[Microsoft's official website].
+- It crashed! +
+Record the problem and report it by opening an issue.
+- What does "String to replace §" do?
+For a special purpose, it's only available in Legacy mode. After MCJE 1.14, players cannot input § properly in game. Some servers will install a color plugin to provide the ability to use & as §. If you're going to use the generated texts in these servers, then you need to input '&' in the textbox. The same, if you're a server owner, and you want your `motd` to be colorful, input '\u00A7' in the textbox.
