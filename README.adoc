@@ -27,5 +27,5 @@ If you're on MCJE 1.13 or older version, use Legacy. Else, JSON and command bloc
 Download .NET 6.0 Runtime on https://dotnet.microsoft.com/en-us/download[Microsoft's official website].
 - It crashed! +
 Record the problem and report it by opening an issue.
-- What does "String to replace §" do?
+- What does "String used to replace §" do?
 For a special purpose, it's only available in Legacy mode. After MCJE 1.14, players cannot input § properly in game. Some servers will install a color plugin to provide the ability to use & as §. If you're going to use the generated texts in these servers, then you need to input '&' in the textbox. The same, if you're a server owner, and you want your `motd` to be colorful, input '\u00A7' in the textbox.
