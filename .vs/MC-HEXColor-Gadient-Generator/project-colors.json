@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "39d457fb-3951-4e49-a3f6-9830e9ba523c": {
+      "ProjectGuid": "39d457fb-3951-4e49-a3f6-9830e9ba523c",
+      "DisplayName": "MC-HEXColor-Gadient-Generator",
+      "ColorIndex": 0
+    }
+  },
+  "NextColorIndex": 1
+}
