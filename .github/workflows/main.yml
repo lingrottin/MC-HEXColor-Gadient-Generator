@@ -31,14 +31,14 @@ jobs:
         uses: microsoft/Setup-MSBuild@v1
 
       # Runs a set of commands using the runners shell
-      - name: Setup NuGet
-        uses: NuGet/setup-nuget@v1.0.2
+      #- name: Setup NuGet
+      #  uses: NuGet/setup-nuget@v1.0.2
         
-      - name: Restore NuGet Packages 
-        run: nuget restore MC-HEXColor-Gadient-Generator.sln
+      #- name: Restore NuGet Packages 
+      #  run: nuget restore MC-HEXColor-Gadient-Generator.sln
         
       - name: Build
-        run: msbuild /p:Configuration=Release MC-HEXColor-Gadient-Generator.sln
+        run: msbuild /p:Configuration=Release /Restore:True MC-HEXColor-Gadient-Generator.sln
       
       - name: Setup environment variables
         shell: pwsh
