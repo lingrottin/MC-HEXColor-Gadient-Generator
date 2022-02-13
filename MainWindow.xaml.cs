@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Windows;
+using System.Windows.Media;
 
 namespace MC_HEXColor_Gadient_Generator
 {
@@ -27,15 +28,15 @@ namespace MC_HEXColor_Gadient_Generator
         int Check()
         {
             int returnint = 0;
-            if( !(StartColorInput.Text.ToCharArray().Length == 7 && StartColorInput.Text.ToCharArray()[0] == '#'))
+            if (!(StartColorInput.Text.ToCharArray().Length == 7 && StartColorInput.Text.ToCharArray()[0] == '#'))
             {
                 MessageBox.Show(Languages.Get("ColorDisplayError", languagee) + " in StartColor", "Error");
-                returnint= 1;
+                returnint = 1;
             }
             if (!(EndColorInput.Text.ToCharArray().Length == 7 && EndColorInput.Text.ToCharArray()[0] == '#'))
             {
                 MessageBox.Show(Languages.Get("ColorDisplayError", languagee) + " in EndColor", "Error");
-                returnint= 1;
+                returnint = 1;
             }
             return returnint;
         }
@@ -43,22 +44,22 @@ namespace MC_HEXColor_Gadient_Generator
         {
             if (Check() == 1) { return; }
             bool OutputType = Json;
-            if(TypeCombo.SelectedIndex == 0) 
+            if (TypeCombo.SelectedIndex == 0)
             {
-                OutputType = Json; 
+                OutputType = Json;
             }
-            else 
+            else
             {
-                OutputType = Legacy; 
+                OutputType = Legacy;
             }
-            alright = 0; 
+            alright = 0;
             int[] start = ParseColor(StartColorInput.Text);
             int[] end = ParseColor(EndColorInput.Text);
-            if(alright == 1) { OutputBox.Text = "ERROR"; return; }
-            Structs.IntNString variable = StartGenerate(InputBox.Text, start, end, OutputType);
-            OutputBox.Text = variable.ReturnString;
+            if (alright == 1) { OutputBox.Text = "ERROR"; return; }
+            string variable = StartGenerate(InputBox.Text, start, end, OutputType);
+            OutputBox.Text = variable;
             return;
-            
+
         }
         static int[] ParseColor(string color)
         {
@@ -77,11 +78,12 @@ namespace MC_HEXColor_Gadient_Generator
                 MessageBox.Show(Languages.Get("ColorDisplayError", languagee), "Error");
                 return @return;
             }*/
-            System.Drawing.Color ccolor=new System.Drawing.Color();
+            Color ccolor = new Color();
             try
             {
-                ccolor = System.Drawing.ColorTranslator.FromHtml(color);
-            }catch(FormatException)
+                ccolor = (Color)ColorConverter.ConvertFromString(color);
+            }
+            catch (FormatException)
             {
                 MessageBox.Show(Languages.Get("ColorDisplayError", languagee), "Error");
                 alright = 1;
@@ -112,16 +114,17 @@ namespace MC_HEXColor_Gadient_Generator
         }
 
 
-        Structs.IntNString StartGenerate(string Input, int[] StartColor, int[] EndColor, bool Type)
+        string StartGenerate(string Input, int[] StartColor, int[] EndColor, bool Type)
         {
-            Structs.IntNString @return = new(0, "\0");
-            if (Input.Length <= 1) {
-                @return.ReturnString = Languages.Get("LengthNotEnough", languagee);
+            string @return = "\0";
+            if (Input.Length <= 1)
+            {
+                @return = Languages.Get("LengthNotEnough", languagee);
                 return @return;
             }
 
             //计算
-            decimal ColorPlR,ColorPlG,ColorPlB;
+            decimal ColorPlR, ColorPlG, ColorPlB;
             if (StartColor[0] == EndColor[0]) { ColorPlR = 0; }
             else
             {
@@ -170,7 +173,7 @@ namespace MC_HEXColor_Gadient_Generator
 
             //输出
             string[] colors_string = new string[Input.Length];
-            string[,] storeString = new string[2,5];
+            string[,] storeString = new string[2, 5];
             storeString[0, 0] = "bold";
             storeString[0, 1] = "italic";
             storeString[0, 2] = "strikethrough";
@@ -189,52 +192,52 @@ namespace MC_HEXColor_Gadient_Generator
             Template[3] = (bool)Underline.IsChecked;
             Template[4] = (bool)Obfuscated.IsChecked;
 #pragma warning restore 8629
-            for(int i=0; i<colors_string.Length; i++)
+            for (int i = 0; i < colors_string.Length; i++)
             {
                 colors_string[i] = "#" + ColorsR[i].ToString("x2") + ColorsG[i].ToString("x2") + ColorsB[i].ToString("x2");
             }
             if (Type == Json)
             {
-                @return.ReturnString = "[";
+                @return = "[";
                 for (int i = 0; i < colors_string.Length; i++)
                 {
                     /*
                         每个字符的JSON：
                         {"text":"Char","color":"#xxxxxx"}
                     */
-                    @return.ReturnString += "{";
-                    for(int ii=0; ii<5; ii++)
+                    @return += "{";
+                    for (int ii = 0; ii < 5; ii++)
                     {
                         if (Template[ii])
                         {
-                            @return.ReturnString += $"\"{storeString[0, ii]}\":true,";
+                            @return += $"\"{storeString[0, ii]}\":true,";
                         }
                     }
-                    @return.ReturnString += $"\"text\":\"{Input.ToCharArray()[i]}\",\"color\":\"{colors_string[i]}\"}}";
-                    if (i != colors_string.Length - 1) @return.ReturnString += ",";
+                    @return += $"\"text\":\"{Input.ToCharArray()[i]}\",\"color\":\"{colors_string[i]}\"}}";
+                    if (i != colors_string.Length - 1) @return += ",";
                 }
-                @return.ReturnString += "]";
+                @return += "]";
             }
             else
             {
                 string replstring = "§";
-                if(ReplaceBox.Text != null) { replstring = ReplaceBox.Text; }
-                for(int i=0; i<Input.Length; i++)
+                if (ReplaceBox.Text != null) { replstring = ReplaceBox.Text; }
+                for (int i = 0; i < Input.Length; i++)
                 {
 
-                    @return.ReturnString += $"{replstring}{colors_string[i]}";
-                    for(int ii=0; ii<5; ii++)
+                    @return += $"{replstring}{colors_string[i]}";
+                    for (int ii = 0; ii < 5; ii++)
                     {
                         if (Template[ii])
                         {
-                            @return.ReturnString += $"{replstring}{storeString[1, ii]}";
+                            @return += $"{replstring}{storeString[1, ii]}";
                         }
                     }
-                    @return.ReturnString += Input.ToCharArray()[i].ToString();
+                    @return += Input.ToCharArray()[i].ToString();
 
                 }
             }
-            
+
             return @return;
         }
 
@@ -242,7 +245,7 @@ namespace MC_HEXColor_Gadient_Generator
         {
             MainWindow_InitLanguage(Languages.zh_CN);
             languagee = Languages.zh_CN;
-            EnglishSwitcher.IsChecked = false; 
+            EnglishSwitcher.IsChecked = false;
             ChineseSwitcher.IsChecked = true;
             return;
         }
@@ -251,7 +254,7 @@ namespace MC_HEXColor_Gadient_Generator
         {
             MainWindow_InitLanguage(Languages.en_US);
             languagee = Languages.en_US;
-            ChineseSwitcher.IsChecked=false;
+            ChineseSwitcher.IsChecked = false;
             EnglishSwitcher.IsChecked = true;
             return;
         }
@@ -296,7 +299,7 @@ namespace MC_HEXColor_Gadient_Generator
             lang[0].Add("Strikethrough", "Strikethrough");
             lang[0].Add("Underline", "Underlined");
             lang[0].Add("Obfuscated", "Obfuscated");
-            lang[0].Add("Replace","String used to replace §:");
+            lang[0].Add("Replace", "String used to replace §:");
 
 
 
@@ -320,7 +323,7 @@ namespace MC_HEXColor_Gadient_Generator
 #pragma warning disable 8603
         static public string Get(string item, int Language)
         {
-            if(lang[Language][item] == null) return "Null";
+            if (lang[Language][item] == null) return "Null";
             return lang[Language][item].ToString();
         }
 #pragma warning restore 8602
