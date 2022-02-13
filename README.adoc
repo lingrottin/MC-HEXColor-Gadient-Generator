@@ -23,8 +23,6 @@ image::/images/srv_example.png[]
 == FAQ ==
 - How to choose between `Legacy` and `JSON`? +
 If you're on MCJE 1.13 or older version, use Legacy. Else, JSON and command block are your best friends; If you're on MCBE, choose whichever you want.
-- It shows .NET 6.0 Runtime required or I can't open it! What can I do? +
-Download .NET 6.0 Runtime on https://dotnet.microsoft.com/en-us/download[Microsoft's official website].
 - It crashed! +
 Record the problem and report it by opening an issue.
 - What does "String used to replace §" do?
