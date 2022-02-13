@@ -3,6 +3,6 @@ $datename = Get-Date -Format "yyyy.MMdd"
 $compress_arguments = @{
     Path = ".\bin\Release"
     CompressionLevel = "Fastest"
-    DestinationPath = ".\MC-HEXColor-Gadient-Generator-Release" + $datename + ".zip"
+    DestinationPath = ".\MC-HEXColor-Gadient-Generator-" + $datename + ".zip"
 }
 Compress-Archive @compress_arguments
