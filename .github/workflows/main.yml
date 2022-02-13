@@ -40,17 +40,9 @@ jobs:
       - name: Build
         run: msbuild /p:Configuration=Release /Restore:True MC-HEXColor-Gadient-Generator.sln
       
-      - name: Setup environment variables
+      - name: Package and generate hashes
         shell: pwsh
-        run: ./setup.ps1
-        
-      - name: Package
-        shell: pwsh
-        run: ./package.ps1
-      
-      - name: Generate hashes
-        shell: pwsh
-        run: ./hash.ps1
+        run: ./action.ps1
         
       - name: Release
         uses: "marvinpinto/action-automatic-releases@latest"
