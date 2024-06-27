@@ -1,3 +1,11 @@
+= Archived =
+
+The initial author has made a better version with graphic color pickers and previews! Check it out below! +
+渐变生成工具最初的作者做了一个更好的、有取色器和实时预览的网页版本 ↓ +
+
+https://utils.akyuu.cn/utils/mc-color-gen[mc-color-gen]
+
+
 = MC-HEXColor-Gadient-Generator =
 
 link:/README_zh.adoc[简体中文] +
